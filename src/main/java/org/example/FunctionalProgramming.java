@@ -5,7 +5,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Comparator;
 import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
 import java.util.function.BiPredicate;
@@ -40,10 +39,6 @@ public class FunctionalProgramming {
 
   static UnaryOperator<String> newName = name -> "tom";
   // method : .apply(string) the same as Function<String, String>
-
-
-  Comparator<Person> x = Comparator.comparing(Person::getAge)
-      .thenComparing(Person::getName);
 
 
   @Data
