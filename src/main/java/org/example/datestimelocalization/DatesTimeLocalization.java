@@ -31,7 +31,7 @@ public class DatesTimeLocalization {
         // using class bundle
         // allows not only strings
         Locale uk = new Locale("en", "UK");
-        rb = ResourceBundle.getBundle("org.example.datestimelocalization.javaBundle.Zoo_en", uk);
+        rb = ResourceBundle.getBundle("org.example.datestimelocalization.javaBundle.Zoo", uk);
         System.out.println(rb.getString("hello"));
         System.out.println(rb.getString("open"));
     }
