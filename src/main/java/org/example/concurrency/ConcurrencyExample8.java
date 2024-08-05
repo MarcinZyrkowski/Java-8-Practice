@@ -33,9 +33,11 @@ public class ConcurrencyExample8 {
         }
     }
 
-//    the above method works the same as method below
-//    private synchronized void incrementAndReport() {
-//        System.out.println((++sheepCount) + " ");
-//    }
+    /*
+    the above method works the same as method below:
+    private synchronized void incrementAndReport() {
+        System.out.println((++sheepCount) + " ");
+    }
+    */
 
 }
