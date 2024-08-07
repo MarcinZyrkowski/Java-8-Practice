@@ -5,6 +5,10 @@ import java.util.concurrent.*;
 public class ConcurrencyExample5 {
 
     public static void main(String[] args) throws Exception {
+        callableAndRunnableComparison();
+    }
+
+    private static void callableAndRunnableComparison() throws InterruptedException, ExecutionException {
         ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();
 
         Runnable task1 = () -> System.out.println("Hello zoo");

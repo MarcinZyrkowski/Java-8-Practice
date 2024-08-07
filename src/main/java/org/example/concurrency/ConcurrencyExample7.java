@@ -12,6 +12,10 @@ public class ConcurrencyExample7 {
     private AtomicInteger sheepCount = new AtomicInteger(0);
 
     public static void main(String[] args) throws Exception {
+        incrementIssueWithAtomic();
+    }
+
+    private static void incrementIssueWithAtomic() {
         ExecutorService service = null;
         try {
             // creates 20 threads

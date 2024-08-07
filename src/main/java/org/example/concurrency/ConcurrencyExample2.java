@@ -6,6 +6,10 @@ import java.util.concurrent.Executors;
 public class ConcurrencyExample2 {
 
     public static void main(String[] args) {
+        executingTasksAlongMain();
+    }
+
+    private static void executingTasksAlongMain() {
         ExecutorService service = null;
         try {
             service = Executors.newSingleThreadExecutor();
@@ -18,7 +22,8 @@ public class ConcurrencyExample2 {
                 }
             });
             service.execute(() -> System.out.println("Printing zoo inventory"));
-            System.out.println("end"); // this could be printed in the middle of other output, main() is still independent thread
+            System.out.println("end"); // this could be printed in the middle of other output,
+            // main() is still independent thread
         } finally {
             if (service != null) {
                 service.shutdown();

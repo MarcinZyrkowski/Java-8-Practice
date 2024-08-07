@@ -5,6 +5,10 @@ import java.util.concurrent.*;
 public class ConcurrencyExample3 {
 
     public static void main(String[] args) {
+        executingTaskAngGetResult();
+    }
+
+    private static void executingTaskAngGetResult() {
         ExecutorService service = null;
         try {
             service = Executors.newSingleThreadExecutor();

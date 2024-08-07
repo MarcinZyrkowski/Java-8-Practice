@@ -8,8 +8,8 @@ public class ConcurrencyExample1 {
         (new ReadInventoryThread()).start();
     }
 
+    // creating Class which could be executed as separate task in new thread
     public static class PrintData implements Runnable {
-
         @Override
         public void run() {
             for (int i = 0; i < 10; i++) {
@@ -18,6 +18,7 @@ public class ConcurrencyExample1 {
         }
     }
 
+    // creating custom thread
     public static class ReadInventoryThread extends Thread {
         public void run() {
             System.out.println("Printing zoo inventory");

@@ -11,6 +11,10 @@ public class ConcurrencyExample8 {
     private int sheepCount = 0;
 
     public static void main(String[] args) throws Exception {
+        syncronizedIncrement();
+    }
+
+    private static void syncronizedIncrement() {
         ExecutorService service = null;
         try {
             // creates 20 threads
@@ -33,11 +37,11 @@ public class ConcurrencyExample8 {
         }
     }
 
-    /*
-    the above method works the same as method below:
-    private synchronized void incrementAndReport() {
+
+    // the above method works the same as method below:
+    private synchronized void synchronizedIncrementAndReport() {
         System.out.println((++sheepCount) + " ");
     }
-    */
+
 
 }

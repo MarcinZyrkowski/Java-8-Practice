@@ -11,6 +11,10 @@ public class ConcurrencyExample6 {
     private int sheepCount = 0;
 
     public static void main(String[] args) throws Exception {
+        parallelIncrementIssue();
+    }
+
+    private static void parallelIncrementIssue() {
         ExecutorService service = null;
         try {
             // creates 20 threads

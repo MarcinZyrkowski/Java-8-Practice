@@ -8,6 +8,10 @@ import java.util.concurrent.Future;
 public class ConcurrencyExample4 {
 
     public static void main(String[] args) throws InterruptedException, ExecutionException {
+        usingCallableWithTaskResult();
+    }
+
+    private static void usingCallableWithTaskResult() throws InterruptedException, ExecutionException {
         ExecutorService service = null;
         try {
             service = Executors.newSingleThreadExecutor();
