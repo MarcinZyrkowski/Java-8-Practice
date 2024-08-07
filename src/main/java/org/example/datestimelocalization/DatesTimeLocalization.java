@@ -12,31 +12,15 @@ import java.util.ResourceBundle;
 public class DatesTimeLocalization {
 
     public static void main(String[] args) throws ParseException {
-        LocalDate date = LocalDate.now();
+        usingPeriod();
+        usingDuration();
+        gettingDefaultLocale();
+        usingResouceBundleProperties();
+        usingResourceBundleClass();
+        numberFormatting();
+    }
 
-        // we can put any period here e.g. days, months, weeks, years
-        System.out.println(addPeriod(date, Period.ofDays(1)));
-
-        LocalTime time = LocalTime.now();
-        // we can put nanos, millis, seconds, minutes, hours, days
-        System.out.println(addDuration(time, Duration.ofHours(1)));
-
-        // printing default locale
-        System.out.println("Default locale: " + Locale.getDefault());
-
-        // using resource bundle properties file
-        Locale france = new Locale("fr", "FR");
-        ResourceBundle rb = ResourceBundle.getBundle("datestimelocalization.Zoo", france);
-        System.out.println(rb.getString("hello"));
-        System.out.println(rb.getString("open"));
-
-        // using class bundle
-        // allows not only strings
-        Locale uk = new Locale("en", "UK");
-        rb = ResourceBundle.getBundle("org.example.datestimelocalization.javaBundle.Zoo", uk);
-        System.out.println(rb.getString("hello"));
-        System.out.println(rb.getString("open"));
-
+    private static void numberFormatting() throws ParseException {
         int numerator = 100000;
         int denominator = 3;
         double result = (double) numerator /denominator;
@@ -64,6 +48,40 @@ public class DatesTimeLocalization {
         NumberFormat cf = NumberFormat.getCurrencyInstance();
         double value = (Double) cf.parse(amount);
         System.out.println(value); // 92807.99
+    }
+
+    private static void usingResourceBundleClass() {
+        // using class bundle
+        // allows not only strings
+        Locale uk = new Locale("en", "UK");
+        ResourceBundle rb = ResourceBundle.getBundle("org.example.datestimelocalization.javaBundle.Zoo", uk);
+        System.out.println(rb.getString("hello"));
+        System.out.println(rb.getString("open"));
+    }
+
+    private static void usingResouceBundleProperties() {
+        // using resource bundle properties file
+        Locale france = new Locale("fr", "FR");
+        ResourceBundle rb = ResourceBundle.getBundle("datestimelocalization.Zoo", france);
+        System.out.println(rb.getString("hello"));
+        System.out.println(rb.getString("open"));
+    }
+
+    private static void gettingDefaultLocale() {
+        // printing default locale
+        System.out.println("Default locale: " + Locale.getDefault());
+    }
+
+    private static void usingDuration() {
+        LocalTime time = LocalTime.now();
+        // we can put nanos, millis, seconds, minutes, hours, days
+        System.out.println(addDuration(time, Duration.ofHours(1)));
+    }
+
+    private static void usingPeriod() {
+        LocalDate date = LocalDate.now();
+        // we can put any period here e.g. days, months, weeks, years
+        System.out.println(addPeriod(date, Period.ofDays(1)));
     }
 
     public static LocalDate addPeriod(LocalDate date, Period period) {

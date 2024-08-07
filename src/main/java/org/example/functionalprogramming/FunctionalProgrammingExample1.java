@@ -1,42 +1,59 @@
 package org.example.functionalprogramming;
 
-import java.util.Arrays;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.util.function.BiConsumer;
+import java.util.function.BiFunction;
+import java.util.function.BiPredicate;
+import java.util.function.Consumer;
+import java.util.function.Function;
+import java.util.function.Predicate;
+import java.util.function.Supplier;
+import java.util.function.UnaryOperator;
 
 public class FunctionalProgrammingExample1 {
 
-    public static void main(String[] args) {
-        useReduceChar();
-        useReduceString();
+  public static void main(String[] args) {
+  }
+
+  static Supplier<String> provideString = () -> "my own string"; // method: .get()
+
+  static Consumer<Person> printPerson = Person::printObj; // method: .accept(person)
+
+  static BiConsumer<String, Integer> constructor = Person::new; // method: .accept(string, integer)
+
+  static Predicate<String> is3Digit = s -> s.length() == 3; // method: .test(string)
+
+  static BiPredicate<String, String> lengthComparator = (f, s) -> f.length() == s.length();
+  // method: .test(string, string)
+
+  static Function<String, Integer> stringToLength = (String s) -> s.length() + 5;
+
+  static BiFunction<String, String, Integer> doubleStringsToLength = (f, s) -> f.length() + s.length();
+  // method : .apply(string, string)
+
+  static UnaryOperator<String> newName = name -> "tom";
+  // method : .apply(string) the same as Function<String, String>
+
+
+  @Data
+  @Builder
+  @NoArgsConstructor
+  @AllArgsConstructor
+  public static class Person {
+    private String name;
+    private Integer age;
+
+    public static String getInfo() {
+      return "Person static class";
     }
 
-    /* .reduce(identity, accumulator, combiner)
-        Identity
-            – an element that is the initial value of the reduction operation and the default result if the stream
-            is empty
-        itemAccumulator
-            – a function that takes two parameters: a partial result of the reduction operation and the next element
-            of the stream
-        Combiner
-            - a function used to combine the partial result of the reduction operation when the reduction is
-            parallelized, or when there’s a mismatch between the types of the accumulator arguments and the types
-            of the accumulator implementation
-            Note: When a stream executes in parallel, the Java runtime splits the stream into multiple substreams.
-            In such cases, we need to use a function to combine the results of the substreams into a single one.
-            This is the role of the combiner
-    */
-
-    private static void useReduceChar() {
-        String string = Arrays.asList('w', 'o', 'l', 'f')
-                .stream()
-                .reduce("", (c, s1) -> c + s1, (s2, s3) -> s2 + s3);
-        System.out.println(string);
+    public static void printObj(Person person) {
+      System.out.println(person);
     }
-
-    private static void useReduceString() {
-        String string = Arrays.asList("w", "o", "l", "f")
-                .stream()
-                .reduce("", (c, s1) -> c + s1);
-        System.out.println(string);
-    }
+  }
 
 }
