@@ -11,10 +11,10 @@ public class ConcurrencyExample8 {
     private int sheepCount = 0;
 
     public static void main(String[] args) throws Exception {
-        syncronizedIncrement();
+        synchronizedIncrement();
     }
 
-    private static void syncronizedIncrement() {
+    private static void synchronizedIncrement() {
         ExecutorService service = null;
         try {
             // creates 20 threads
