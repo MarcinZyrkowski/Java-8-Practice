@@ -47,7 +47,7 @@ public class ConcurrencyExample11 {
         System.out.println();
         System.out.println("weights: ");
         Arrays.stream(weights)
-                .forEach(d-> System.out.println(d.intValue() + " "));
+                .forEach(d -> System.out.println(d.intValue() + " "));
     }
 
     public static void main(String[] args) {
