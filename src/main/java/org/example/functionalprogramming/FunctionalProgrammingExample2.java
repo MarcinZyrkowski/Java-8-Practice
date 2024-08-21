@@ -35,7 +35,7 @@ public class FunctionalProgrammingExample2 {
     private static void useReduceString() {
         String string = Arrays.asList("w", "o", "l", "f")
                 .stream()
-                .reduce("", (c, s1) -> c + s1);
+                .reduce("", (currentAccumulatedWord, nextWord) -> currentAccumulatedWord + nextWord);
         System.out.println(string);
     }
 
