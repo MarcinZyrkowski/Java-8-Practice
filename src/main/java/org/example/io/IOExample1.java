@@ -10,7 +10,7 @@ public class IOExample1 {
   public static void main(String[] args) {
     // if there is amibigious path like: ...resources/io which could be applied to main/resource or test/resource
     // then we should use filePathFromRepoRoot
-    String filePathFromRepoRoot = "src/main/resources/io/namesList.txt";
+    String filePathFromRepoRoot = "src/main/resources/io/example1/namesList.txt";
 
     printFileData(filePathFromRepoRoot);
   }
