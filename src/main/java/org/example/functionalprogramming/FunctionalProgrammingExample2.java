@@ -4,10 +4,10 @@ import java.util.Arrays;
 
 public class FunctionalProgrammingExample2 {
 
-    public static void main(String[] args) {
-        useReduceChar();
-        useReduceString();
-    }
+  public static void main(String[] args) {
+    useReduceChar();
+    useReduceString();
+  }
 
     /* .reduce(identity, accumulator, combiner)
         Identity
@@ -25,18 +25,18 @@ public class FunctionalProgrammingExample2 {
             This is the role of the combiner
     */
 
-    private static void useReduceChar() {
-        String string = Arrays.asList('w', 'o', 'l', 'f')
-                .stream()
-                .reduce("", (c, s1) -> c + s1, (s2, s3) -> s2 + s3);
-        System.out.println(string);
-    }
+  private static void useReduceChar() {
+    String string = Arrays.asList('w', 'o', 'l', 'f')
+        .stream()
+        .reduce("", (c, s1) -> c + s1, (s2, s3) -> s2 + s3);
+    System.out.println(string);
+  }
 
-    private static void useReduceString() {
-        String string = Arrays.asList("w", "o", "l", "f")
-                .stream()
-                .reduce("", (currentAccumulatedWord, nextWord) -> currentAccumulatedWord + nextWord);
-        System.out.println(string);
-    }
+  private static void useReduceString() {
+    String string = Arrays.asList("w", "o", "l", "f")
+        .stream()
+        .reduce("", (currentAccumulatedWord, nextWord) -> currentAccumulatedWord + nextWord);
+    System.out.println(string);
+  }
 
 }

@@ -1,10 +1,5 @@
 package org.example.functionalprogramming;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
 import java.util.function.BiPredicate;
@@ -13,6 +8,10 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 import java.util.function.UnaryOperator;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 public class FunctionalProgrammingExample1 {
 
@@ -44,6 +43,7 @@ public class FunctionalProgrammingExample1 {
   @NoArgsConstructor
   @AllArgsConstructor
   public static class Person {
+
     private String name;
     private Integer age;
 

@@ -5,30 +5,30 @@ import java.util.concurrent.Executors;
 
 public class ConcurrencyExample2 {
 
-    public static void main(String[] args) {
-        executingTasksAlongMain();
-    }
+  public static void main(String[] args) {
+    executingTasksAlongMain();
+  }
 
-    private static void executingTasksAlongMain() {
-        ExecutorService service = null;
-        try {
-            service = Executors.newSingleThreadExecutor();
+  private static void executingTasksAlongMain() {
+    ExecutorService service = null;
+    try {
+      service = Executors.newSingleThreadExecutor();
 
-            System.out.println("begin");
-            service.execute(() -> System.out.println("Printing zoo inventory"));
-            service.execute(() -> {
-                for (int i = 0; i < 10; i++) {
-                    System.out.println("printing record: " + i);
-                }
-            });
-            service.execute(() -> System.out.println("Printing zoo inventory"));
-            System.out.println("end"); // this could be printed in the middle of other output,
-            // main() is still independent thread
-        } finally {
-            if (service != null) {
-                service.shutdown();
-            }
+      System.out.println("begin");
+      service.execute(() -> System.out.println("Printing zoo inventory"));
+      service.execute(() -> {
+        for (int i = 0; i < 10; i++) {
+          System.out.println("printing record: " + i);
         }
+      });
+      service.execute(() -> System.out.println("Printing zoo inventory"));
+      System.out.println("end"); // this could be printed in the middle of other output,
+      // main() is still independent thread
+    } finally {
+      if (service != null) {
+        service.shutdown();
+      }
     }
+  }
 
 }
