@@ -23,8 +23,7 @@ public class IOExample3 {
   private static void copy(File source, File destination) throws IOException {
     try (
         InputStream in = new BufferedInputStream(new FileInputStream(source));
-        OutputStream out = new BufferedOutputStream(new FileOutputStream(destination))
-    ) {
+        OutputStream out = new BufferedOutputStream(new FileOutputStream(destination))) {
       byte[] buffer = new byte[1024];
       int lenghtRead;
       while ((lenghtRead = in.read(buffer)) > 0) {
