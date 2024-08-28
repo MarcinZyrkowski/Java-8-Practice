@@ -1,6 +1,8 @@
 package org.example.io;
 
+import java.io.BufferedOutputStream;
 import java.io.BufferedWriter;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -16,7 +18,11 @@ public class IOExample2 {
     long bwTime = bufferedFileWriterExecutionTime(repoRootPath);
     System.out.println("Buffered Writer time: " + bwTime);
 
+    long boTime = bufferedOutputStreamExecutionTime(repoRootPath);
+    System.out.println("Buffered Output time: " + boTime);
+
     System.out.println("pw time - bw time > 0 ::::: " + (pwTime - bwTime));
+    System.out.println("bo time - bw time > 0 ::::: " + (boTime - bwTime));
   }
 
   private static long printWriterExecutionTime(String repoRootPath) {
@@ -33,11 +39,19 @@ public class IOExample2 {
     return endTime - startTime;
   }
 
+  private static long bufferedOutputStreamExecutionTime(String repoRootPath) {
+    long startTime = System.nanoTime();
+    saveDataUsingBufferedOutputStream(repoRootPath);
+    long endTime = System.nanoTime();
+    return endTime - startTime;
+  }
+
 
   private static void saveDataUsingPrintWriter(String path) {
     try (PrintWriter writer = new PrintWriter(new FileWriter(path + "output.txt"))) {
       writer.println("Hello, World!");
       writer.printf("Number: 42");
+      writer.println("");
     } catch (IOException e) {
       e.printStackTrace();
     }
@@ -48,6 +62,19 @@ public class IOExample2 {
       writer.write("Hello, World!");
       writer.newLine();
       writer.write("Number: 42");
+      writer.newLine();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+
+  private static void saveDataUsingBufferedOutputStream(String path) {
+    try (BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(path + "output.txt"))) {
+      String[] dataArray = {"Hello, World!", "Number: 42"};
+
+      for (String data : dataArray) {
+        bos.write((data + "\n").getBytes());
+      }
     } catch (IOException e) {
       e.printStackTrace();
     }
