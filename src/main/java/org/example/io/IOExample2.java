@@ -9,21 +9,28 @@ public class IOExample2 {
 
   public static void main(String[] args) {
     String repoRootPath = "src/main/resources/io/example2/";
+
+    long pwTime = printWriterExecutionTime(repoRootPath);
+    System.out.println("Print Writer time: " + pwTime);
+
+    long bwTime = bufferedFileWriterExecutionTime(repoRootPath);
+    System.out.println("Buffered Writer time: " + bwTime);
+
+    System.out.println("pw time - bw time > 0 ::::: " + (pwTime - bwTime));
+  }
+
+  private static long printWriterExecutionTime(String repoRootPath) {
     long startTime = System.nanoTime();
     saveDataUsingPrintWriter(repoRootPath);
     long endTime = System.nanoTime();
-    long pwTime = endTime - startTime;
+    return endTime - startTime;
+  }
 
-    System.out.println("Print Writer time: " + pwTime);
-
-    startTime = System.nanoTime();
+  private static long bufferedFileWriterExecutionTime(String repoRootPath) {
+    long startTime = System.nanoTime();
     saveDataUsingBufferedWriter(repoRootPath);
-    endTime = System.nanoTime();
-    long bwTime = endTime - startTime;
-
-    System.out.println("Buffered Writer time: " + bwTime);
-
-    System.out.println("pw time - bw time > 0 : " + (pwTime - bwTime));
+    long endTime = System.nanoTime();
+    return endTime - startTime;
   }
 
 
