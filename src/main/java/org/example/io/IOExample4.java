@@ -42,9 +42,7 @@ public class IOExample4 {
         if (object instanceof Animal) {
           animals.add((Animal) object);
         }
-
       }
-
     } catch (EOFException e) {
       // we are expecting EOFException for end of the file
     }
@@ -52,10 +50,10 @@ public class IOExample4 {
   }
 
   public static void createAnimalFile(List<Animal> animals, File dataFile) throws IOException {
-    try(ObjectOutputStream out = new ObjectOutputStream(
+    try (ObjectOutputStream out = new ObjectOutputStream(
         new BufferedOutputStream(
             new FileOutputStream(dataFile)))) {
-      for (Animal animal: animals) {
+      for (Animal animal : animals) {
         out.writeObject(animal);
       }
     }
