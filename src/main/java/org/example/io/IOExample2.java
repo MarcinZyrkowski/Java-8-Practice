@@ -21,13 +21,24 @@ public class IOExample2 {
     long boTime = bufferedOutputStreamExecutionTime(repoRootPath);
     System.out.println("Buffered Output time: " + boTime);
 
+    long epwTime = enhancedPrintWriterExecutionTime(repoRootPath);
+    System.out.println(epwTime);
+
     System.out.println("pw time - bw time > 0 ::::: " + (pwTime - bwTime));
+    System.out.println("epw time - bw time > 0 ::::: " + (epwTime - bwTime));
     System.out.println("bo time - bw time > 0 ::::: " + (boTime - bwTime));
   }
 
   private static long printWriterExecutionTime(String repoRootPath) {
     long startTime = System.nanoTime();
     saveDataUsingPrintWriter(repoRootPath);
+    long endTime = System.nanoTime();
+    return endTime - startTime;
+  }
+
+  private static long enhancedPrintWriterExecutionTime(String repoRootPath) {
+    long startTime = System.nanoTime();
+    saveDataUsingEnhancedPrintWriter(repoRootPath);
     long endTime = System.nanoTime();
     return endTime - startTime;
   }
@@ -49,6 +60,17 @@ public class IOExample2 {
 
   private static void saveDataUsingPrintWriter(String path) {
     try (PrintWriter writer = new PrintWriter(new FileWriter(path + "output.txt"))) {
+      writer.println("Hello, World!");
+      writer.printf("Number: 42");
+      writer.println("");
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+
+  private static void saveDataUsingEnhancedPrintWriter(String path) {
+    try (PrintWriter writer = new PrintWriter(
+        new BufferedWriter(new FileWriter(path + "output.txt")))) {
       writer.println("Hello, World!");
       writer.printf("Number: 42");
       writer.println("");
