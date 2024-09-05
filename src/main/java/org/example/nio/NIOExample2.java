@@ -11,6 +11,8 @@ public class NIOExample2 {
 
     viewingThePath(path);
     accessingPathComponents(path);
+    checkingPathType(path);
+    creatingSubPath(path);
   }
 
   private static void viewingThePath(Path path) {
@@ -32,6 +34,22 @@ public class NIOExample2 {
 
     Path root = path.getRoot();
     System.out.println(root); // returns null because path is relative
+  }
+
+  private static void checkingPathType(Path path) {
+    System.out.println(path.isAbsolute());
+
+    Path absPath = path.toAbsolutePath();
+    System.out.println(absPath.isAbsolute());
+    System.out.println(absPath.getRoot());
+    System.out.println(absPath.toString());
+  }
+
+  private static void creatingSubPath(Path path) {
+    // first index inclusive
+    // last index exclusive
+    System.out.println("Subpath from 0 to 3: " + path.subpath(0,3));
+    System.out.println("Subpath from 3 to 6: " + path.subpath(3,6));
   }
 
 }
