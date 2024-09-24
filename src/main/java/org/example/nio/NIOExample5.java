@@ -1,11 +1,15 @@
 package org.example.nio;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.nio.charset.Charset;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import lombok.SneakyThrows;
 
@@ -20,9 +24,11 @@ public class NIOExample5 {
     copy();
     deleteIfCopyExist();
     copyingFilesWithIoAndIo2();
-    deleteIfCopyFilewWithIoAndIo2Exist();
-//    moveFile();
+    deleteIfCopyFileWithIoAndIo2Exist();
+    moveFile();
     moveFileBack();
+    readFileWithNewBufferedReader();
+    writeFileWithNewBufferedWriter();
   }
 
   public static void createSingleDir() throws IOException {
@@ -67,7 +73,7 @@ public class NIOExample5 {
     }
   }
 
-  public static void deleteIfCopyFilewWithIoAndIo2Exist() throws IOException {
+  public static void deleteIfCopyFileWithIoAndIo2Exist() throws IOException {
     Files.deleteIfExists(Paths.get("src/main/java/org/example/nio/dir2/file-output.txt"));
     Files.deleteIfExists(Paths.get("src/main/java/org/example/nio/dir2/output.txt"));
   }
@@ -92,5 +98,22 @@ public class NIOExample5 {
     }
   }
 
+  public static void readFileWithNewBufferedReader() throws IOException {
+    Path path = Paths.get("src/main/java/org/example/nio/dir/original.txt");
+
+    try(BufferedReader reader = Files.newBufferedReader(path, Charset.defaultCharset())) {
+      String line = null;
+      while ((line = reader.readLine()) != null) {
+        System.out.println(line);
+      }
+    }
+  }
+
+  public static void writeFileWithNewBufferedWriter() throws IOException {
+    Path path = Paths.get("src/main/java/org/example/nio/dir/original-with-new-buffered-writer.txt");
+    try(BufferedWriter writer = Files.newBufferedWriter(path, Charset.defaultCharset())) {
+       writer.write("new original");
+    }
+  }
 
 }

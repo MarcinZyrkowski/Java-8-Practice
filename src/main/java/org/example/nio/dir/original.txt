@@ -1,1 +1,5 @@
 original
+file
+with
+multiple
+lines
