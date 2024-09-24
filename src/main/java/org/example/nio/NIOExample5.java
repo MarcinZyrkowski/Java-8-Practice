@@ -11,6 +11,7 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 import lombok.SneakyThrows;
 
 public class NIOExample5 {
@@ -29,6 +30,7 @@ public class NIOExample5 {
     moveFileBack();
     readFileWithNewBufferedReader();
     writeFileWithNewBufferedWriter();
+    readingWithReadAllLines();
   }
 
   public static void createSingleDir() throws IOException {
@@ -101,6 +103,8 @@ public class NIOExample5 {
   public static void readFileWithNewBufferedReader() throws IOException {
     Path path = Paths.get("src/main/java/org/example/nio/dir/original.txt");
 
+    System.out.println("---newBufferedReader()---");
+
     try(BufferedReader reader = Files.newBufferedReader(path, Charset.defaultCharset())) {
       String line = null;
       while ((line = reader.readLine()) != null) {
@@ -113,6 +117,21 @@ public class NIOExample5 {
     Path path = Paths.get("src/main/java/org/example/nio/dir/original-with-new-buffered-writer.txt");
     try(BufferedWriter writer = Files.newBufferedWriter(path, Charset.defaultCharset())) {
        writer.write("new original");
+    }
+  }
+
+  public static void readingWithReadAllLines() {
+    Path path = Paths.get("src/main/java/org/example/nio/dir/original.txt");
+
+    System.out.println("---readAllLines()---");
+
+    try {
+      final List<String> lines = Files.readAllLines(path);
+      for (String line: lines) {
+        System.out.println(line);
+      }
+    } catch (IOException e){
+      throw new RuntimeException(e);
     }
   }
 
