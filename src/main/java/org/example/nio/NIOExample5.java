@@ -1,6 +1,10 @@
 package org.example.nio;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import lombok.SneakyThrows;
@@ -15,6 +19,8 @@ public class NIOExample5 {
     deleteDirs();
     copy();
     deleteIfCopyExist();
+    copyingFilesWithIoAndIo2();
+    deleteIfCopyFilewWithIoAndIo2Exist();
   }
 
   public static void createSingleDir() throws IOException {
@@ -41,6 +47,27 @@ public class NIOExample5 {
 
   public static void deleteIfCopyExist() throws IOException {
     Files.deleteIfExists(Paths.get("src/main/java/org/example/nio/dir2/copy.txt"));
+  }
+
+  public static void copyingFilesWithIoAndIo2() {
+    try (
+        InputStream is = new FileInputStream("src/main/java/org/example/nio/dir/source.txt");
+        OutputStream out = new FileOutputStream("src/main/java/org/example/nio/dir2/output.txt")) {
+
+      // copy stream data to file
+      Files.copy(is, Paths.get("src/main/java/org/example/nio/dir2/file-output.txt"));
+
+      // copy file data to stream
+      Files.copy(Paths.get("src/main/java/org/example/nio/dir/original.txt"), out);
+
+    } catch (Exception e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+  public static void deleteIfCopyFilewWithIoAndIo2Exist() throws IOException {
+    Files.deleteIfExists(Paths.get("src/main/java/org/example/nio/dir2/file-output.txt"));
+    Files.deleteIfExists(Paths.get("src/main/java/org/example/nio/dir2/output.txt"));
   }
 
 
