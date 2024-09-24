@@ -21,6 +21,8 @@ public class NIOExample5 {
     deleteIfCopyExist();
     copyingFilesWithIoAndIo2();
     deleteIfCopyFilewWithIoAndIo2Exist();
+//    moveFile();
+    moveFileBack();
   }
 
   public static void createSingleDir() throws IOException {
@@ -68,6 +70,26 @@ public class NIOExample5 {
   public static void deleteIfCopyFilewWithIoAndIo2Exist() throws IOException {
     Files.deleteIfExists(Paths.get("src/main/java/org/example/nio/dir2/file-output.txt"));
     Files.deleteIfExists(Paths.get("src/main/java/org/example/nio/dir2/output.txt"));
+  }
+
+  public static void moveFile() {
+    try {
+      Files.move(Paths.get("src/main/java/org/example/nio/dir/fileToBeMoved.txt"),
+          Paths.get("src/main/java/org/example/nio/dir2/fileToBeMoved.txt"));
+
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+  public static void moveFileBack() {
+    try {
+      Files.move(Paths.get("src/main/java/org/example/nio/dir2/fileToBeMoved.txt"),
+          Paths.get("src/main/java/org/example/nio/dir/fileToBeMoved.txt"));
+
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
   }
 
 
