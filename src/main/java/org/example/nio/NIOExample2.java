@@ -9,9 +9,13 @@ public class NIOExample2 {
     String rootPath = "src/main/resources/nio/example2/cities.txt";
     Path path = Paths.get(rootPath);
 
+    System.out.println("===viewing the path===");
     viewingThePath(path);
+    System.out.println("===accessing path components===");
     accessingPathComponents(path);
+    System.out.println("===checking path type===");
     checkingPathType(path);
+    System.out.println("===creating subpath===");
     creatingSubPath(path);
   }
 
@@ -34,6 +38,7 @@ public class NIOExample2 {
 
     Path root = path.getRoot();
     System.out.println(root); // returns null because path is relative
+    System.out.println(path.toAbsolutePath().getRoot());
   }
 
   private static void checkingPathType(Path path) {
