@@ -26,6 +26,7 @@ dependencies {
     annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
     implementation 'com.github.javafaker:javafaker:1.0.2'
     implementation 'org.assertj:assertj-core:3.6.1'
+    implementation 'org.postgresql:postgresql:42.7.4'
 }
 
 test {
